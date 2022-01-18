@@ -1,3 +1,8 @@
+rem ::if "%1"=="hide" goto CmdBegin
+rem ::start mshta vbscript:createobject("wscript.shell").run("""%~0"" hide",0)(window.close)&&exit
+rem ::CmdBegin
+rem 上面代码可以隐藏cmd窗口
+
 set remotesship=anso_x1.ansosz.com
 set remoteshport=16122
 
@@ -37,8 +42,9 @@ ping -n 170 127.0.0.1
 goto aloop
 ) else if %ERRORLEVEL%==1 (
 taskkill /F /IM ssh.exe
+ping -n 10 127.0.0.1
 goto aloop
 ) else (
-ping -n 2 127.0.0.1
+ping -n 10 127.0.0.1
 goto aloop
 )
