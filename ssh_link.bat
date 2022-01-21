@@ -11,8 +11,8 @@ call:ssh_link %1 %2 %3
 ) else if "%4"=="ssh_link_jk" (
 call:ssh_link_jk %1 %2 %3
 ) else if "%4"=="ssh_link_start" (
+taskkill /FI "WINDOWTITLE eq C:\Windows\system32\cmd.exe - ssh_link.bat   %1 %2 %3 ssh_link_jk"
 start ssh_link.bat %1 %2 %3 ssh_link_jk
-start ssh_link.bat %1 %2 %3 ssh_link
 ) else (
 start ssh_link.bat 1052 172.31.225.74 10050 ssh_link_start
 start ssh_link.bat 1053 172.31.0.103 10050 ssh_link_start
@@ -41,7 +41,8 @@ if %ERRORLEVEL%==0 (
 ping -n 170 127.0.0.1
 goto aloop
 ) else if %ERRORLEVEL%==1 (
-taskkill /F /IM ssh.exe
+taskkill /FI "WINDOWTITLE eq C:\Windows\system32\cmd.exe - ssh_link.bat   %1 %2 %3 ssh_link"
+start ssh_link.bat %1 %2 %3 ssh_link
 ping -n 10 127.0.0.1
 goto aloop
 ) else (
